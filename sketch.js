@@ -2,13 +2,14 @@ const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
-//var engine, world
-var score;
-var bg="light.jpg";
+var engine, world
+var score = 0;
+var day,night;
 var backgroundImg;
 
 function preload(){
-light = loadImage("light.jpg");
+//day = loadImage("day.jpg");
+//night = loadImage("night.jpg");
 getBgImg();
 }
 
@@ -61,17 +62,19 @@ function setup() {
 
 function draw() {
   if(backgroundImg)
-    background(backgroundImg);  
+    background(backgroundImg); 
+    //background("lightBlue"); 
   Engine.update(engine);
+  strokeWeight(2);
   textSize(35);
     fill("white");
-    text("score " + score,width-300,50);
+    text("Score: " + score,width-790,35);
  ground.display();
  ground2.display();
  ground3.display();
  
- textSize(30);
- text("score:"+score,20,20);
+ //textSize(30);
+ //text("score:"+score,20,20);
 
  fill("purple");
  block1.display();
@@ -153,9 +156,9 @@ async function getBgImg(){
   var dateTime = responseJson.datetime;
   var hour = dateTime.slice(11,13);
   if(hour >= 06 && hour <= 19){
-      backgroundImg = loadImage("sprites/bg.png");
+      backgroundImg = loadImage("sprites/day.png");
   }
   else{
-      backgroundImg = loadImage("sprites/bg2.jpg");
+      backgroundImg = loadImage("sprites/night.jpg");
   }
 }
